@@ -1,18 +1,28 @@
 plugins{
     id 'java-library'
+    id 'io.freefair.lombok' version "8.14"
 }
 
 repositories {
     mavenCentral()
 }
 
-def jUnitVersion = '5.8.1'
-
+def jUnitVersion = '5.8.1',
+    wiremockVersion = "3.13.1",
+    jacksonVersion = "2.19.2",
+    restAssuredVersion = "5.5.5",
+    assertJVersion = "4.0.0-M1"
 
 dependencies {
+    implementation(
+            "org.wiremock:wiremock-standalone:$wiremockVersion"
+    )
     testImplementation (
             "org.junit.jupiter:junit-jupiter:$jUnitVersion",
-            "org.slf4j:slf4j-simple:2.0.17"
+            "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion",
+            "io.rest-assured:rest-assured:$restAssuredVersion",
+            "org.slf4j:slf4j-simple:2.0.17",
+            "org.assertj:assertj-core:$assertJVersion"
     )
     testRuntimeOnly (
             "org.junit.jupiter:junit-jupiter-engine:$jUnitVersion"
